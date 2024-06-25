@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --body-color:#FF7F3E;
+    --nav-color:#5a40df;
+    --side-nav:#604CC3;
+    --text-color:#FFF6E9;
+    --search-bar:#FFF6E9;
+    --search-text:#604CC3;
+}
+body{
+    height: 100vh;
+    background-color: var(--body-color);
+}
+/* dark color change after the click event  */
+body.dark{
+        --body-color:#110f1d;
+        --nav-color:#5a40df;
+        --side-nav:#201e2c;
+        --text-color:#FFF6E9;
+        --search-bar:#ffffff;
+        --search-text:#ff7f3e;
+}
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    background-color: var(--nav-color);
+    z-index: 100;
+}
+nav .nav-bar{
+    position: relative;
+    height:100%;
+    max-width: 1200px;
+    width: 100%;
+    background-color: var(--nav-color);
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .nav-bar .siderbarOpen{
+    color: var(--text-color);
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+}
+nav .nav-bar .logo a{
+    font-size: 25px;
+    font-weight:500;
+    color:var(--text-color);
+    text-decoration: none;
+}
+nav.active .nav-bar .navLogo a{
+  opacity:0;
+  transition: all .3s ease;
+}
+.menu .logo-toggel{
+  display: none;
+}
+
+nav .nav-bar .nav-links{
+    display: flex;
+    align-items: center;
+}
+nav .nav-bar .nav-links li{
+    margin: 0 5px;
+    list-style: none;
+}
+nav .nav-bar .nav-links li a{
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+}
+.nav-links li a::before{
+    content: ' ';
+    position: absolute;
+    left:50%;
+    bottom: 0;
+    transform: translate(50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color:var(--text-color);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links li:hover a::before{
+ opacity: 1;
+}
+
+.nav-bar .darkLight-searchBox{
+display: flex;
+align-items: center;
+}
+
+.nav-bar .darkLight-searchBox .dark-light,
+.nav-bar .darkLight-searchBox .searchToggel{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.dark-light i,
+.searchToggel i{
+    position: absolute;
+    color: var(--text-color);
+    font-size: 22px;
+    cursor: pointer ;
+    transition: all 0.2s ease;
+}
+/* here the sun in nav bar is hiden */
+.dark-light i.sun{
+    opacity: 0;
+    pointer-events:none;
+}
+/* after the click event we have passed active class */
+.dark-light.active i.sun{
+    opacity: 1;
+    pointer-events: auto;
+}
+/* moon is hiden after the click event so sun can appear */
+.dark-light.active i.moon{
+opacity: 0;
+pointer-events: none;
+}
+
+.searchToggel i.cancel{
+    opacity: 0;
+    pointer-events:none;
+}
+
+.searchToggel.active i.cancel{
+    opacity: 1;
+    pointer-events:auto;
+}
+
+.searchToggel.active i.search{
+    opacity: 0;
+    pointer-events:none;
+}
+.searchBox{
+    position: relative;
+}
+.searchBox .search-field{
+    position: absolute;
+    bottom: -85px;
+    right:5px;
+    height: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: var(--nav-color);
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.searchToggel.active ~ .search-field{
+    opacity: 1;
+    pointer-events: auto;
+
+}
+.search-field::before{
+    content: ' ';
+    position: absolute;
+    right: 14px;
+    top: -4px;
+    height:12px;
+    width: 12px;
+    background-color: var(--nav-color);
+    transform: rotate(-45deg);
+    z-index: -1;
+
+}
+.search-field input{
+    height: 100%;
+    width: 100%;
+    padding: 0 45px 0 15px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--search-text);
+    background-color: var(--search-bar);
+ 
+}
+
+.search-field i{
+    position: absolute;
+    color:var(--nav-color);
+    right: 15px;
+}
+
+@media (max-width:790px) {
+    nav .nav-bar .siderbarOpen{
+       
+        display: block;
+    }
+    .menu{
+        position: fixed;
+        height: 100%;
+        width: 320px;
+        left:-100%;
+        top: 0;
+        padding: 20px;
+        background-color: var(--side-nav);
+        z-index: 100;
+        transition: all .3s ease;
+    }
+    nav.active .menu{
+        left:-0%;
+
+    }
+    
+    .menu .logo-toggel{
+        display: block;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-toggel .sidebarClose{
+        color: var(--text-color);
+        font-size: 30px;
+        cursor: pointer;
+    }
+    .nav-bar .nav-links{
+        flex-direction: column;
+        padding-top: 60px;
+    }
+
+    nav .nav-bar .nav-links li a{
+    display: block;
+    margin-top: 20px;
+
+    }
+
+
+}
